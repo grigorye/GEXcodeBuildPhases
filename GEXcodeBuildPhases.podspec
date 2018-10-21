@@ -133,6 +133,9 @@ Pod::Spec.new do |s|
   # s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
+
+  s.user_target_xcconfig = { 'GE_XCODE_BUILD_PHASES' => '$(GE_XCODE_BUILD_PHASES_POD_ROOT)/Scripts' }
+  
   # s.dependency "JSONKit", "~> 1.4"
 
 end
