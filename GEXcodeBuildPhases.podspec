@@ -136,6 +136,6 @@ Pod::Spec.new do |s|
 
   s.user_target_xcconfig = { 'GE_XCODE_BUILD_PHASES' => '$(GE_XCODE_BUILD_PHASES_POD_ROOT)/Scripts' }
   
-  # s.dependency "JSONKit", "~> 1.4"
+  s.dependency "GEXcodeScripts"
 
 end
