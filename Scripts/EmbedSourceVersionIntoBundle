@@ -13,6 +13,11 @@ version="${commitNumber:?}${status}"
 infoPlistWOExt=$(echo "${INFOPLIST_PATH:?}" | sed 's/.plist$//')
 infoPlistDefaultsDomain="${CONFIGURATION_BUILD_DIR:?}/${infoPlistWOExt:?}"
 defaults write "${infoPlistDefaultsDomain:?}" CFBundleVersion -string "${version:?}"
+if [ "${GE_APPEND_BUNDLE_VERSION_INTO_BUNDLE_SHORT_VERSION_STRING}" = "YES" ]
+then
+	origMVers=$(/usr/libexec/PlistBuddy -c 'Print CFBundleShortVersionString' "${INFOPLIST_FILE}")
+	defaults write "${infoPlistDefaultsDomain:?}" CFBundleShortVersionString -string "${origMVers:?}.${version:?}"
+fi
 
 settingsPlist="${TARGET_BUILD_DIR:?}/${FULL_PRODUCT_NAME:?}/Settings.bundle/Root.plist"
 if [ -f "${settingsPlist:?}" ]
